@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
 import TabNavigation from './src/Navigation/TabNavigation';
+
 export default function App() {
   return (
     <NavigationContainer >
@@ -9,5 +9,6 @@ export default function App() {
       </NavigationContainer>
   );
 }
+
 
 
