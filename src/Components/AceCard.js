@@ -9,8 +9,10 @@ const AceCard = ({cardNumber}) => {
    const images = new Array(cardNumber || 1).fill(CardAce);
     return (
        
-        <SafeAreaView style={[styles.card]}>
+        <SafeAreaView style={styles.root}>
+            <View style={[styles.card]}>
             <View style={styles.cardContainer}>
+                
             {images.map((img,i) => {
                  const inputRange = [-cardHeight, 0];
                            const outputRange = [
@@ -34,6 +36,22 @@ const AceCard = ({cardNumber}) => {
                 )
             })}
            </View>
+           <Animated.ScrollView
+            scrollEventThrottle={16}
+            contentContainerStyle={styles.content}
+            showsVerticalScrollIndicator={false}
+            onScroll={Animated.event(
+              [
+                {
+                  nativeEvent: {
+                    contentOffset: { y }
+                  }
+                }
+              ],
+              { useNativeDriver: true }
+            )}
+          />
+           </View>
         </SafeAreaView>
 
            
@@ -44,10 +62,14 @@ const AceCard = ({cardNumber}) => {
 export default AceCard
 
 const styles = StyleSheet.create({
-    card:{
+    root: {
         justifyContent:"flex-start",
         alignItems:'flex-start',
         transform: [{ rotate: '90deg'}]
+      },
+    card:{
+        height: cardHeight,
+        borderRadius: 10
     },
     cardContainer:{
         height: cardHeight,
